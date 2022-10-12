@@ -1,0 +1,45 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    working_dir: /app
+    volumes:
+      - .:/app
+      - gem_cache:/usr/local/bundle
+    env_file:
+      - .env
+    depends_on:
+      - database
+      - webpack
+    environment:
+      - WEBPACKER_DEV_SERVER_HOST=webpack
+
+  webpack:
+    build: .
+    command: ./bin/webpack-dev-server
+    ports:
+      - 3035:3035
+    volumes:
+      - ./app:/bindmount:rw
+      - node_modules:/app/node_modules
+    env_file:
+      - .env
+    environment:
+      - WEBPACKER_DEV_SERVER_HOST=0.0.0.0
+
+  database:
+    image: docker.io/postgres:14-alpine
+    env_file:
+      - .env
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
+  gem_cache:
+  node_modules:
