@@ -1,0 +1,32 @@
+<%= form_with(model: story) do |form| %>
+  <% if story.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(story.errors.count, "error") %> prohibited this story from being saved:</h2>
+
+      <ul>
+        <% story.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="card mb-2 mt-2">
+    <div class="card-body">
+      <h2 class="card-title"><%= main_title %></h2>
+      <div class="form-group mb-2">
+        <%= form.text_field :title, placeholder: "title",  class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.text_area :body, placeholder: "story", class: 'form-control' %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit 'Done', class: "btn btn-warning btn-block mt-2" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+

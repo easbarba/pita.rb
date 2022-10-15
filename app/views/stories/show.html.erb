@@ -1,0 +1,16 @@
+<%= link_to 'Back', stories_path, class: "btn btn-outline-primary" %>
+
+<div class="card mb-2 mt-2">
+  <div class="card-body">
+    <h2 class="card-title"><%= @story.title %></h2>
+    <small class="opacity-70 text-nowrap"><%= link_to @story.user.name, "#" %> |
+      <%= @story.created_at.to_date %></small>
+    <p><%= strip_tags @story.body %></p>
+  </div>
+</div>
+
+<% if has_all_permissions? %>
+  <%= link_to 'Edit', edit_story_path(@story), class: "btn btn-outline-success" %>
+  <%= link_to 'Delete', @story, method: :delete, class: "btn btn-outline-danger", data: { confirm: 'Are you sure?' } %>
+<% end %>
+
