@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   resources :stories
 
   # Pages
-  get "home", to: "pages#home"
-  get "about", to: "pages#about"
+  get "home", to: "pages#home", as: 'pages_home'
+  get "about", to: "pages#about", as: 'pages_about'
 end

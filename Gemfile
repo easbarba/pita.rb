@@ -32,6 +32,11 @@ gem 'devise', '~> 4.8'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+gem "kaminari", "~> 1.2"
+
+gem "net-smtp", "~> 0.3.2"
+
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
@@ -70,4 +75,3 @@ group :test do
   gem 'webdrivers'
 end
 
-gem "kaminari", "~> 1.2"
