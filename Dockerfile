@@ -11,12 +11,16 @@ RUN apk add --update $SYSTEM_PACKAGES $PROJECT_PACKAGES $FRONT_PACKAGES
 WORKDIR /app
 
 # Rails dependencies
-RUN gem install bundler childprocess # webdriver dep
 COPY Gemfile Gemfile.lock ./
-RUN bundle update && bundle install
+ENV BUNDLE_PATH /gems
+RUN gem install --no-document bundler childprocess
+RUN bundle install
+
+COPY package.json yarn.lock ./
+RUN yarn install --check-files
 
 # All files
-COPY . ./
+COPY . .
 
 ENTRYPOINT ["./docker-entrypoint.sh"]
 CMD ["bin/rails", "s", "-b", "0.0.0.0"]
