@@ -3,13 +3,23 @@ User.all.destroy_all
 Story.all.destroy_all
 
 # Users
-User.create! name: "data", email: "yesir@example.com", password: "1234512345"
-User.create! name: "madruga",
-             email: "doutra@example.com",
-             password: "1234512345"
-User.create! name: "mussum",
-             email: "forevis@example.com",
-             password: "1234512345"
+User.create! [
+               {
+                 name: "data",
+                 email: "yesir@example.com",
+                 password: "1234512345"
+               },
+               {
+                 name: "madruga",
+                 email: "doutra@example.com",
+                 password: "1234512345"
+               },
+               {
+                 name: "mussum",
+                 email: "forevis@example.com",
+                 password: "1234512345"
+               }
+             ]
 
 users = User.all
 text =
@@ -18,6 +28,6 @@ text =
 # Stories
 50.times do
   users.sample.stories.create! title: "Story #{rand(1..101)}",
-                             body: text,
-                             created_at: rand(365).days.ago
+                               body: text,
+                               created_at: rand(365).days.ago
 end

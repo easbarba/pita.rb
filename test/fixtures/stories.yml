@@ -1,0 +1,11 @@
+one:
+  title: MyString
+  user: roo@root.com
+  body: MyText
+  published_at: 2022-05-12 18:29:15
+
+two:
+  title: MyString
+  user: roo@root.com
+  body: MyText
+  published_at: 2022-05-12 18:29:15
